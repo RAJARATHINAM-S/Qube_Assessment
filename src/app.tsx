@@ -1,7 +1,15 @@
-import React from "react";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './app-router';
 
 const App = () => {
-  return <h1>Hello, React with Webpack!</h1>;
+  return (
+    <>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+    </>
+  );
 };
 
 export default App;
