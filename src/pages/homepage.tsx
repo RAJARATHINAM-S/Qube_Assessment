@@ -10,16 +10,307 @@ import { routes } from '../utils/routes';
 import { useDispatch } from 'react-redux';
 import { setCollectionDetails } from '../redux/commonSlice';
 import { MultiSelect } from 'primereact/multiselect';
-
+export const albums = [
+  {
+    id: 1,
+    collectionName: 'EPIC: The Troy Saga (Official Concept Album)',
+    artistName: 'Jorge Rivera-Herrans',
+    type: 'EP',
+    songCount: 5,
+    duration: '00:15:40',
+    size: '45 MB',
+    releasedOn: '03 Sept 2024, 02:35 PM',
+    songs: [
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+      {
+        title: 'Just a Man',
+        performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
+        duration: '00:02:30',
+        size: '18 MB',
+      },
+      {
+        title: 'Full Speed Ahead',
+        performers:
+          'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
+        duration: '00:05:10',
+        size: '24 MB',
+      },
+      {
+        title: 'Open Arms',
+        performers: 'Jorge Rivera-Herrans & Steven Dookie',
+        duration: '00:05:10',
+        size: '23 MB',
+      },
+      {
+        title: 'Warrior of the Mind',
+        performers:
+          'Jorge Rivera-Herrans, Teagan Earley & Cast of EPIC: The Musical',
+        duration: '00:05:10',
+        size: '23 MB',
+      },
+    ],
+  },
+  {
+    id: 2,
+    collectionName: 'EPIC: The Ocean Saga (Official Concept Album)',
+    artistName: 'Jorge Rivera-Herrans',
+    type: 'EP',
+    songCount: 4,
+    duration: '00:13:00',
+    size: '15 MB',
+    releasedOn: '04 Sept 2024, 10:00 AM',
+    songs: [
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+      {
+        title: 'Just a Man',
+        performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
+        duration: '00:02:30',
+        size: '18 MB',
+      },
+      {
+        title: 'Full Speed Ahead',
+        performers:
+          'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
+        duration: '00:05:10',
+        size: '24 MB',
+      },
+      {
+        title: 'Open Arms',
+        performers: 'Jorge Rivera-Herrans & Steven Dookie',
+        duration: '00:05:10',
+        size: '23 MB',
+      },
+    ],
+  },
+  {
+    id: 3,
+    collectionName: 'EPIC: The Ithaca Saga (Official Concept Album)',
+    artistName: 'Jorge Rivera-Herrans',
+    type: 'EP',
+    songCount: 4,
+    duration: '00:12:24',
+    size: '30 MB',
+    releasedOn: '04 Sept 2024, 10:00 AM',
+    songs: [
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+      {
+        title: 'Just a Man',
+        performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
+        duration: '00:02:30',
+        size: '18 MB',
+      },
+      {
+        title: 'Full Speed Ahead',
+        performers:
+          'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
+        duration: '00:05:10',
+        size: '24 MB',
+      },
+      {
+        title: 'Open Arms',
+        performers: 'Jorge Rivera-Herrans & Steven Dookie',
+        duration: '00:05:10',
+        size: '23 MB',
+      },
+    ],
+  },
+  {
+    id: 4,
+    collectionName: 'Collection Name',
+    artistName: 'Artist Name',
+    type: 'Album',
+    songCount: 8,
+    duration: '00:21:06',
+    size: '12 MB',
+    releasedOn: '10 Oct 2024, 02:35 PM',
+    songs: [
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+      {
+        title: 'Just a Man',
+        performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
+        duration: '00:02:30',
+        size: '18 MB',
+      },
+      {
+        title: 'Full Speed Ahead',
+        performers:
+          'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
+        duration: '00:05:10',
+        size: '24 MB',
+      },
+      {
+        title: 'Open Arms',
+        performers: 'Jorge Rivera-Herrans & Steven Dookie',
+        duration: '00:05:10',
+        size: '23 MB',
+      },
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+      {
+        title: 'Just a Man',
+        performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
+        duration: '00:02:30',
+        size: '18 MB',
+      },
+      {
+        title: 'Full Speed Ahead',
+        performers:
+          'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
+        duration: '00:05:10',
+        size: '24 MB',
+      },
+      {
+        title: 'Open Arms',
+        performers: 'Jorge Rivera-Herrans & Steven Dookie',
+        duration: '00:05:10',
+        size: '23 MB',
+      },
+    ],
+  },
+  {
+    id: 5,
+    collectionName: 'Collection Name',
+    artistName: 'Artist Name',
+    type: 'Album',
+    songCount: 7,
+    duration: '00:20:22',
+    size: '10 MB',
+    releasedOn: '01 Sept 2024, 12:31 AM',
+    songs: [
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+      {
+        title: 'Just a Man',
+        performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
+        duration: '00:02:30',
+        size: '18 MB',
+      },
+      {
+        title: 'Full Speed Ahead',
+        performers:
+          'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
+        duration: '00:05:10',
+        size: '24 MB',
+      },
+      {
+        title: 'Open Arms',
+        performers: 'Jorge Rivera-Herrans & Steven Dookie',
+        duration: '00:05:10',
+        size: '23 MB',
+      },
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+      {
+        title: 'Just a Man',
+        performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
+        duration: '00:02:30',
+        size: '18 MB',
+      },
+      {
+        title: 'Full Speed Ahead',
+        performers:
+          'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
+        duration: '00:05:10',
+        size: '24 MB',
+      },
+    ],
+  },
+  {
+    id: 6,
+    collectionName: 'Collection Name',
+    artistName: 'Artist Name',
+    type: 'Album',
+    songCount: 0,
+    duration: '00:25:40',
+    size: '16 MB',
+    releasedOn: '05 Sept 2024, 12:31 AM',
+    songs: [],
+  },
+  {
+    id: 7,
+    collectionName: 'Collection Name',
+    artistName: 'Artist Name',
+    type: 'Single',
+    songCount: 1,
+    duration: '00:01:20',
+    size: '24 MB',
+    releasedOn: '11 Oct 2024, 12:31 AM',
+    songs: [
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+    ],
+  },
+  {
+    id: 8,
+    collectionName: 'Collection Name',
+    artistName: 'Artist Name',
+    type: 'Single',
+    songCount: 1,
+    duration: '00:01:20',
+    size: '24 MB',
+    releasedOn: '11 Oct 2024, 12:31 AM',
+    songs: [
+      {
+        title: 'The Horse and the Infant',
+        performers:
+          'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+        duration: '00:02:15',
+        size: '13 MB',
+      },
+    ],
+  },
+];
 const Homepage: React.FC<any> = () => {
   const dispatch = useDispatch();
-  const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [rows, setRows] = useState<number>(10);
   const [listData, setListData] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalRecords, setTotalRecords] = useState<any>(0);
-  const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined);
   const [typeFilters, setTypeFilters] = useState({
     album: false,
     ep: false,
@@ -31,142 +322,6 @@ const Homepage: React.FC<any> = () => {
     { label: 'EP', value: 'ep' },
     { label: 'Single', value: 'single' },
   ];
-
-  const albums = [
-    {
-      id: 1,
-      collectionName: 'EPIC: The Troy Saga (Official Concept Album)',
-      artistName: 'Jorge Rivera-Herrans',
-      type: 'EP',
-      songCount: 5,
-      duration: '00:15:40',
-      size: '45 MB',
-      releasedOn: '03 Sept 2024, 02:35 PM',
-      songs: [
-        {
-          title: 'The Horse and the Infant',
-          performers:
-            'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
-          duration: '00:02:15',
-          size: '13 MB',
-        },
-        {
-          title: 'Just a Man',
-          performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
-          duration: '00:02:30',
-          size: '18 MB',
-        },
-        {
-          title: 'Full Speed Ahead',
-          performers:
-            'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
-          duration: '00:05:10',
-          size: '24 MB',
-        },
-        {
-          title: 'Open Arms',
-          performers: 'Jorge Rivera-Herrans & Steven Dookie',
-          duration: '00:05:10',
-          size: '23 MB',
-        },
-        {
-          title: 'Warrior of the Mind',
-          performers:
-            'Jorge Rivera-Herrans, Teagan Earley & Cast of EPIC: The Musical',
-          duration: '00:05:10',
-          size: '23 MB',
-        },
-      ],
-    },
-    {
-      id: 2,
-      collectionName: 'EPIC: The Ocean Saga (Official Concept Album)',
-      artistName: 'Jorge Rivera-Herrans',
-      type: 'EP',
-      songCount: 4,
-      duration: '00:13:00',
-      size: '15 MB',
-      releasedOn: '04 Sept 2024, 10:00 AM',
-      songs: [],
-    },
-    {
-      id: 3,
-      collectionName: 'EPIC: The Ithaca Saga (Official Concept Album)',
-      artistName: 'Jorge Rivera-Herrans',
-      type: 'EP',
-      songCount: 4,
-      duration: '00:12:24',
-      size: '30 MB',
-      releasedOn: '04 Sept 2024, 10:00 AM',
-      songs: [],
-    },
-    {
-      id: 4,
-      collectionName: 'Collection Name',
-      artistName: 'Artist Name',
-      type: 'Album',
-      songCount: 8,
-      duration: '00:21:06',
-      size: '12 MB',
-      releasedOn: '10 Oct 2024, 02:35 PM',
-      songs: [],
-    },
-    {
-      id: 5,
-      collectionName: 'Collection Name',
-      artistName: 'Artist Name',
-      type: 'Album',
-      songCount: 7,
-      duration: '00:20:22',
-      size: '10 MB',
-      releasedOn: '01 Sept 2024, 12:31 AM',
-      songs: [],
-    },
-    {
-      id: 6,
-      collectionName: 'Collection Name',
-      artistName: 'Artist Name',
-      type: 'Album',
-      songCount: 9,
-      duration: '00:25:40',
-      size: '16 MB',
-      releasedOn: '05 Sept 2024, 12:31 AM',
-      songs: [],
-    },
-  ];
-
-  const singles = [
-    {
-      id: 7,
-      collectionName: 'Collection Name',
-      artistName: 'Artist Name',
-      type: 'Single',
-      songCount: 1,
-      duration: '00:01:20',
-      size: '24 MB',
-      releasedOn: '11 Oct 2024, 12:31 AM',
-      songs: [],
-    },
-    {
-      id: 8,
-      collectionName: 'Collection Name',
-      artistName: 'Artist Name',
-      type: 'Single',
-      songCount: 1,
-      duration: '00:01:20',
-      size: '24 MB',
-      releasedOn: '11 Oct 2024, 12:31 AM',
-      songs: [],
-    },
-  ];
-
-  const allMusic = [...albums, ...singles];
-
-  const filteredMusic = allMusic.filter(
-    (item) =>
-      item.collectionName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.artistName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   const debounceSearch = useCallback(
     debounce((value) => {
@@ -227,7 +382,6 @@ const Homepage: React.FC<any> = () => {
             to={routes.collectionDetail}
             className="view-details"
             onClick={() => {
-              console.log(row, 'row');
               dispatch(setCollectionDetails(row));
             }}
           >
@@ -251,7 +405,16 @@ const Homepage: React.FC<any> = () => {
   };
   useEffect(() => {
     getPlayList();
+    dispatch(setCollectionDetails(null));
   }, []);
+  useEffect(() => {
+    const filteredMusic = albums.filter(
+      (item) =>
+        item.collectionName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.artistName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setListData(filteredMusic);
+  }, [searchTerm]);
   return (
     <div className="main-wrapper">
       <div className="header ">
@@ -291,7 +454,7 @@ const Homepage: React.FC<any> = () => {
               </div>
               <PrimeDataTable
                 column={columns}
-                data={albums}
+                data={listData}
                 rows={rows}
                 setRows={setRows}
                 currentPage={currentPage}

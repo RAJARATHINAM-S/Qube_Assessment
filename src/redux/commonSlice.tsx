@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  collection: {},
+  collection: null,
 };
 
 const CommonSlice = createSlice({
