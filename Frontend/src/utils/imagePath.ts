@@ -8,3 +8,4 @@ export { default as activeDownIcon } from '../assets/icons/activeDownIcon.svg';
 export { default as sortDescIcon } from '../assets/icons/sortDescIcon.svg';
 export { default as sortAsceIcon } from '../assets/icons/sortAsceIcon.svg';
 export { default as greaterThan } from '../assets/icons/greater-than.svg';
+export { default as downArrow } from '../assets/icons/downArrow.svg';

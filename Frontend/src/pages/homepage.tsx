@@ -10,6 +10,7 @@ import { routes } from '../utils/routes';
 import { useDispatch } from 'react-redux';
 import { setCollectionDetails } from '../redux/commonSlice';
 import { MultiSelect } from 'primereact/multiselect';
+import CustomMultiSelect from '../components/customMultiSelect';
 
 const Homepage: React.FC<any> = () => {
   const dispatch = useDispatch();
@@ -121,6 +122,7 @@ const Homepage: React.FC<any> = () => {
   useEffect(() => {
     getPlayList();
   }, [searchTerm, selectedTypes]);
+
   return (
     <div className="main-wrapper">
       <div className="header ">
@@ -149,13 +151,11 @@ const Homepage: React.FC<any> = () => {
                   </button>
                 </div>
 
-                <MultiSelect
-                  value={selectedTypes}
+                <CustomMultiSelect
                   options={typeOptions}
-                  onChange={(e) => setSelectedTypes(e.value)}
+                  selectedValues={selectedTypes}
+                  onChange={setSelectedTypes}
                   placeholder="Type"
-                  className="p-multiselect-custom"
-                  panelClassName="custom-panel"
                 />
               </div>
               <PrimeDataTable

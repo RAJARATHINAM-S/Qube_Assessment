@@ -262,3 +262,111 @@ div.p-checkbox {
   width: 24px;
   height: 24px;
 }
+
+.custom-multiselect-container {
+  position: relative;
+}
+
+.custom-multiselect-header {
+  background: #e1e4e9;
+  border-radius: 8px;
+  min-width: 71px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  transition: all 0.3s ease;
+}
+
+.custom-multiselect-header.selected {
+  background: #ebf5ff;
+  border-radius: 8px;
+  min-width: 88px;
+  height: 32px;
+  padding: 6px 8px;
+  border: 1px solid #084782;
+}
+.custom-multiselect-header.selected .custom-multiselect-trigger {
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-multiselect-label {
+  font-size: 12px;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-bottom: 6px;
+  color: #29313a;
+}
+
+.custom-multiselect-header.selected .custom-multiselect-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #0d4b94;
+  padding: 0;
+}
+
+.custom-multiselect-trigger svg {
+  color: #08090a;
+  padding-right: 8px;
+  width: 18px;
+}
+
+.custom-multiselect-header.selected .custom-multiselect-trigger svg {
+  color: #0d4b94;
+  width: 18px;
+  height: 18px;
+  fill: #0d4b94;
+}
+
+.custom-dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  width: 205px;
+}
+
+.custom-multiselect-items {
+  list-style: none;
+  padding: 12px 16px;
+  margin: 0;
+}
+
+.custom-multiselect-item {
+  padding: 12px 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #29313a;
+  font-size: 14px;
+}
+
+.custom-multiselect-item:hover {
+  background-color: #f5f7f9;
+}
+
+.custom-checkbox {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #677a90;
+  border-radius: 6px;
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.custom-checkbox.selected {
+  background: #084782;
+}
