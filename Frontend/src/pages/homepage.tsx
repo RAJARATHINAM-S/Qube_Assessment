@@ -10,7 +10,6 @@ import { routes } from '../utils/routes';
 import { useDispatch } from 'react-redux';
 import { setCollectionDetails } from '../redux/commonSlice';
 import { MultiSelect } from 'primereact/multiselect';
-import { albums } from '../utils/data';
 
 const Homepage: React.FC<any> = () => {
   const dispatch = useDispatch();
@@ -99,8 +98,17 @@ const Homepage: React.FC<any> = () => {
   const getPlayList = async () => {
     try {
       showTableLoader();
-      const response = await getData(end_points.music_Collection_Api.url);
+      let url = end_points.music_Collection_Api.url;
+      url += '?search=' + searchTerm || '';
+      if (selectedTypes.length) {
+        url += '&type=' + selectedTypes.join(',');
+      }
+      const response = await getData(url);
       console.log(response.data, 'collections');
+      if (response.data.code === 200) {
+        setListData(response?.data?.data);
+        setTotalRecords(response?.data?.data?.length);
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -108,21 +116,10 @@ const Homepage: React.FC<any> = () => {
     }
   };
   useEffect(() => {
-    getPlayList();
     dispatch(setCollectionDetails(null));
   }, []);
   useEffect(() => {
-    let filteredMusic = albums.filter(
-      (item) =>
-        item.collectionName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.artistName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    filteredMusic = filteredMusic.filter(
-      (item) =>
-        selectedTypes.length === 0 ||
-        selectedTypes.includes(item.type.toLowerCase())
-    );
-    setListData(filteredMusic);
+    getPlayList();
   }, [searchTerm, selectedTypes]);
   return (
     <div className="main-wrapper">
@@ -169,6 +166,7 @@ const Homepage: React.FC<any> = () => {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 totalRecords={totalRecords}
+                isPaginationEnabled={false}
               />
             </div>
           </div>

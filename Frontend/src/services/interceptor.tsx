@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 const axiosInstance: AxiosInstance = axios.create();
-const API_URL = 'https://api.musiccollection.com/v1';
+const API_URL = 'http://localhost:5000/api/';
 axiosInstance.interceptors.request.use(
   async (config: any) => {
     const localStorageToken = localStorage.getItem('token');

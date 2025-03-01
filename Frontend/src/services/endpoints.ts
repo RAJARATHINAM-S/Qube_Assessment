@@ -3,5 +3,5 @@ interface EndPoint {
 }
 
 export const end_points: Record<string, EndPoint> = {
-  music_Collection_Api: { url: '/collections' },
+  music_Collection_Api: { url: 'collections' },
 };

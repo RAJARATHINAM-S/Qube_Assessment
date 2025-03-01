@@ -39,12 +39,18 @@ const CollectionDetail: React.FC<any> = () => {
       sortable: true,
     },
   ];
-  const getCollectionList = async (details = {}) => {
+  const getCollectionList = async (id = '') => {
     try {
       showTableLoader();
-      // const response = await getData(end_points.music_Collection_Api.url);
-      // console.log(response?.data, 'collections');
-      setListData(details);
+      let url = end_points.music_Collection_Api.url;
+      if (id) {
+        url += `/${id}`;
+      }
+      const response = await getData(url);
+      console.log(response?.data, 'collections');
+      if (response.data.code === 200) {
+        setListData(response.data.data);
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -53,7 +59,7 @@ const CollectionDetail: React.FC<any> = () => {
   };
   useEffect(() => {
     if (details) {
-      getCollectionList(details);
+      getCollectionList(details?.id);
     } else {
       navigate(routes.homepage);
     }
@@ -137,6 +143,7 @@ const CollectionDetail: React.FC<any> = () => {
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
               totalRecords={totalRecords}
+              isPaginationEnabled={false}
             />
           </div>
         </div>
