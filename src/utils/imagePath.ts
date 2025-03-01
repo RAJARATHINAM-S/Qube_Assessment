@@ -1,1 +1,9 @@
 export { default as searchIcon } from '../assets/icons/searchIcon.svg';
+export { default as sortIcon } from '../assets/icons/sortIcon.svg';
+export { default as eyeIcon } from '../assets/icons/eyeIcon.svg';
+export { default as upIcon } from '../assets/icons/upIcon.svg';
+export { default as downIcon } from '../assets/icons/downIcon.svg';
+export { default as activeUpIcon } from '../assets/icons/activeUpIcon.svg';
+export { default as activeDownIcon } from '../assets/icons/activeDownIcon.svg';
+export { default as sortDescIcon } from '../assets/icons/sortDescIcon.svg';
+export { default as sortAsceIcon } from '../assets/icons/sortAsceIcon.svg';

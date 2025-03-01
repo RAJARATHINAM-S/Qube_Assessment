@@ -1,29 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import TypeDropdown from '../components/typeDropdown';
-import { eyeIcon, searchIcon, sortIcon } from '../utils/imagePath';
-import { debounce } from '../utils/debounce';
+import { eyeIcon } from '../utils/imagePath';
 import PrimeDataTable from '../components/primeDataTable';
 import { getData } from '../services/api.service';
 import { end_points } from '../services/endpoints';
 import { hideTableLoader, showTableLoader } from '../components/spinner';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { routes } from '../utils/routes';
-import { useDispatch } from 'react-redux';
-import { setCollectionDetails } from '../redux/commonSlice';
-const Homepage: React.FC<any> = () => {
-  const dispatch = useDispatch();
+const CollectionDetail: React.FC<any> = () => {
+  const details = useSelector((state: any) => state.common.collection);
+  console.log(details, 'details');
+
   const [selectedAlbum, setSelectedAlbum] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
   const [rows, setRows] = useState<number>(10);
   const [listData, setListData] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalRecords, setTotalRecords] = useState<any>(0);
-  const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined);
-  const [typeFilters, setTypeFilters] = useState({
-    album: false,
-    ep: false,
-    single: false,
-  });
+
   const albums = [
     {
       id: 1,
@@ -152,35 +145,10 @@ const Homepage: React.FC<any> = () => {
     },
   ];
 
-  const allMusic = [...albums, ...singles];
-
-  const filteredMusic = allMusic.filter(
-    (item) =>
-      item.collectionName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.artistName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleAlbumSelect = (album) => {
-    setSelectedAlbum(album);
-  };
-
   const handleBackToOverview = () => {
     setSelectedAlbum(null);
   };
-  const handleFilterChange = (filters) => {
-    setTypeFilters(filters);
-  };
 
-  const debounceSearch = useCallback(
-    debounce((value) => {
-      setSearchTerm(value);
-    }, 300),
-    []
-  );
-
-  const handleSearch = (value = '') => {
-    debounceSearch(value);
-  };
   const columns = [
     {
       field: 'collectionName',
@@ -226,14 +194,7 @@ const Homepage: React.FC<any> = () => {
       sortable: false,
       body: (row: any) => {
         return (
-          <Link
-            to={routes.collectionDetail}
-            className="view-details"
-            onClick={() => {
-              console.log(row, 'row');
-              dispatch(setCollectionDetails(row));
-            }}
-          >
+          <Link to="#" className="view-details">
             <img src={eyeIcon} alt="" />
             <p>View Details</p>
           </Link>
@@ -241,11 +202,11 @@ const Homepage: React.FC<any> = () => {
       },
     },
   ];
-  const getPlayList = async () => {
+  const getCollectionList = async () => {
     try {
       showTableLoader();
       const response = await getData(end_points.music_Collection_Api.url);
-      console.log(response.data, 'collections');
+      console.log(response?.data, 'collections');
     } catch (error) {
       console.error(error);
     } finally {
@@ -253,36 +214,19 @@ const Homepage: React.FC<any> = () => {
     }
   };
   useEffect(() => {
-    getPlayList();
+    getCollectionList();
   }, []);
   return (
     <div className="main-wrapper">
-      <div className="header">
-        <h1 className="main-heading">Overview</h1>
+      <div>
+        <Link to={routes.homepage}>
+          <h1>Overview</h1>
+        </Link>
       </div>
       <div className="page-wrapper">
         <div className="content">
           <div className="card">
             <div className="card-body">
-              <div className="search-and-filter">
-                <div className="search-container">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="search-input"
-                    onChange={(e: any) => handleSearch(e?.target?.value)}
-                  />
-                  <button
-                    title="search"
-                    type="button"
-                    className="search-button"
-                  >
-                    <img src={searchIcon} alt="" />
-                  </button>
-                </div>
-
-                <TypeDropdown onFilterChange={handleFilterChange} />
-              </div>
               <PrimeDataTable
                 column={columns}
                 data={albums}
@@ -300,4 +244,4 @@ const Homepage: React.FC<any> = () => {
   );
 };
 
-export default Homepage;
+export default CollectionDetail;
