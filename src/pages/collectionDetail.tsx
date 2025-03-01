@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { eyeIcon } from '../utils/imagePath';
+import { eyeIcon, greaterThan } from '../utils/imagePath';
 import PrimeDataTable from '../components/primeDataTable';
 import { getData } from '../services/api.service';
 import { end_points } from '../services/endpoints';
@@ -17,106 +17,41 @@ const CollectionDetail: React.FC<any> = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalRecords, setTotalRecords] = useState<any>(0);
 
-  const albums = [
+  const collectionDetails = [
     {
       id: 1,
-      collectionName: 'EPIC: The Troy Saga (Official Concept Album)',
-      artistName: 'Jorge Rivera-Herrans',
-      type: 'EP',
-      songCount: 5,
-      duration: '00:15:40',
-      size: '45 MB',
-      releasedOn: '03 Sept 2024, 02:35 PM',
-      songs: [
-        {
-          title: 'The Horse and the Infant',
-          performers:
-            'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
-          duration: '00:02:15',
-          size: '13 MB',
-        },
-        {
-          title: 'Just a Man',
-          performers: 'Jorge Rivera-Herrans & Cast of EPIC: The Musical',
-          duration: '00:02:30',
-          size: '18 MB',
-        },
-        {
-          title: 'Full Speed Ahead',
-          performers:
-            'Jorge Rivera-Herrans, Armando Julián, Steven Dookie & Cast of EPIC: The Musical',
-          duration: '00:05:10',
-          size: '24 MB',
-        },
-        {
-          title: 'Open Arms',
-          performers: 'Jorge Rivera-Herrans & Steven Dookie',
-          duration: '00:05:10',
-          size: '23 MB',
-        },
-        {
-          title: 'Warrior of the Mind',
-          performers:
-            'Jorge Rivera-Herrans, Teagan Earley & Cast of EPIC: The Musical',
-          duration: '00:05:10',
-          size: '23 MB',
-        },
-      ],
+      song: 'The Horse and the Infant',
+      performers: 'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+      duration: '00:02:15',
+      size: '15 MB',
     },
     {
       id: 2,
-      collectionName: 'EPIC: The Ocean Saga (Official Concept Album)',
-      artistName: 'Jorge Rivera-Herrans',
-      type: 'EP',
-      songCount: 4,
-      duration: '00:13:00',
+      song: 'The Horse and the Infant',
+      performers: 'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+      duration: '00:02:15',
       size: '15 MB',
-      releasedOn: '04 Sept 2024, 10:00 AM',
-      songs: [],
     },
     {
       id: 3,
-      collectionName: 'EPIC: The Ithaca Saga (Official Concept Album)',
-      artistName: 'Jorge Rivera-Herrans',
-      type: 'EP',
-      songCount: 4,
-      duration: '00:12:24',
-      size: '30 MB',
-      releasedOn: '04 Sept 2024, 10:00 AM',
-      songs: [],
+      song: 'The Horse and the Infant',
+      performers: 'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+      duration: '00:02:15',
+      size: '15 MB',
     },
     {
       id: 4,
-      collectionName: 'Collection Name',
-      artistName: 'Artist Name',
-      type: 'Album',
-      songCount: 8,
-      duration: '00:21:06',
-      size: '12 MB',
-      releasedOn: '10 Oct 2024, 02:35 PM',
-      songs: [],
+      song: 'The Horse and the Infant',
+      performers: 'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+      duration: '00:02:15',
+      size: '15 MB',
     },
     {
       id: 5,
-      collectionName: 'Collection Name',
-      artistName: 'Artist Name',
-      type: 'Album',
-      songCount: 7,
-      duration: '00:20:22',
-      size: '10 MB',
-      releasedOn: '01 Sept 2024, 12:31 AM',
-      songs: [],
-    },
-    {
-      id: 6,
-      collectionName: 'Collection Name',
-      artistName: 'Artist Name',
-      type: 'Album',
-      songCount: 9,
-      duration: '00:25:40',
-      size: '16 MB',
-      releasedOn: '05 Sept 2024, 12:31 AM',
-      songs: [],
+      song: 'The Horse and the Infant',
+      performers: 'Jorge Rivera-Herrans, Luke Holt & Cast of EPIC: The Musical',
+      duration: '00:02:15',
+      size: '15 MB',
     },
   ];
 
@@ -151,26 +86,13 @@ const CollectionDetail: React.FC<any> = () => {
 
   const columns = [
     {
-      field: 'collectionName',
-      header: 'Collection Name',
-      sortable: true,
-      body: (row: any) => {
-        return (
-          <div className="collection-name">
-            <h6>{row?.collectionName || ''}</h6>
-            <p>{row?.artistName || ''}</p>
-          </div>
-        );
-      },
-    },
-    {
-      field: 'artistName',
-      header: 'Artist Name',
+      field: 'song',
+      header: 'Song',
       sortable: true,
     },
     {
-      field: 'songCount',
-      header: 'Song Count',
+      field: 'performers',
+      header: 'Performers',
       sortable: true,
     },
     {
@@ -182,24 +104,6 @@ const CollectionDetail: React.FC<any> = () => {
       field: 'size',
       header: 'Size',
       sortable: true,
-    },
-    {
-      field: 'releasedOn',
-      header: 'Released On',
-      sortable: true,
-    },
-    {
-      field: '',
-      header: '',
-      sortable: false,
-      body: (row: any) => {
-        return (
-          <Link to="#" className="view-details">
-            <img src={eyeIcon} alt="" />
-            <p>View Details</p>
-          </Link>
-        );
-      },
     },
   ];
   const getCollectionList = async () => {
@@ -217,19 +121,77 @@ const CollectionDetail: React.FC<any> = () => {
     getCollectionList();
   }, []);
   return (
-    <div className="main-wrapper">
-      <div>
-        <Link to={routes.homepage}>
-          <h1>Overview</h1>
-        </Link>
+    <div className="main-wrapper collection-details-wrapper">
+      <div className="container">
+        <div className="d-flex align-items-center overview-heading">
+          <Link to={routes.homepage} className="me-2 overview-link">
+            Overview
+          </Link>
+          <div className="d-flex align-items-center ">
+            <span>
+              <img src={greaterThan} alt="" className="me-2" />
+            </span>
+            <p className="mb-0">EPIC: The Troy Saga (Official Concept Album)</p>
+          </div>
+        </div>
       </div>
-      <div className="page-wrapper">
-        <div className="content">
+      <div className="concept-album container-fluid">
+        <div className="container">
+          <h4>EPIC: The Troy Saga (Official Concept Album)</h4>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="card">
+          <div className="card-body types">
+            <div className="row">
+              <div className="col-md-2">
+                <div>
+                  <p>Artist</p>
+                  <p>Jorge Rivera-Herrans</p>
+                </div>
+              </div>
+              <div className="col-md-2">
+                <div>
+                  <p>Type</p>
+                  <p>EP</p>
+                </div>
+              </div>
+              <div className="col-md-2">
+                <div>
+                  <p>Song Count</p>
+                  <p>5</p>
+                </div>
+              </div>
+              <div className="col-md-2">
+                <div>
+                  <p>Total Size</p>
+                  <p>100 MB</p>
+                </div>
+              </div>
+              <div className="col-md-2">
+                <div>
+                  <p>Total Duration</p>
+                  <p>15 minutes 40 seconds</p>
+                </div>
+              </div>
+              <div className="col-md-2">
+                <div>
+                  <p>Released On</p>
+                  <p>10 Nov 2023</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div className="container">
           <div className="card">
             <div className="card-body">
               <PrimeDataTable
                 column={columns}
-                data={albums}
+                data={collectionDetails}
                 rows={rows}
                 setRows={setRows}
                 currentPage={currentPage}
@@ -240,7 +202,6 @@ const CollectionDetail: React.FC<any> = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import TypeDropdown from '../components/typeDropdown';
 import { eyeIcon, searchIcon, sortIcon } from '../utils/imagePath';
 import { debounce } from '../utils/debounce';
 import PrimeDataTable from '../components/primeDataTable';
@@ -10,6 +9,8 @@ import { Link } from 'react-router-dom';
 import { routes } from '../utils/routes';
 import { useDispatch } from 'react-redux';
 import { setCollectionDetails } from '../redux/commonSlice';
+import { MultiSelect } from 'primereact/multiselect';
+
 const Homepage: React.FC<any> = () => {
   const dispatch = useDispatch();
   const [selectedAlbum, setSelectedAlbum] = useState(null);
@@ -24,6 +25,13 @@ const Homepage: React.FC<any> = () => {
     ep: false,
     single: false,
   });
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const typeOptions = [
+    { label: 'Album', value: 'album' },
+    { label: 'EP', value: 'ep' },
+    { label: 'Single', value: 'single' },
+  ];
+
   const albums = [
     {
       id: 1,
@@ -160,17 +168,6 @@ const Homepage: React.FC<any> = () => {
       item.artistName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleAlbumSelect = (album) => {
-    setSelectedAlbum(album);
-  };
-
-  const handleBackToOverview = () => {
-    setSelectedAlbum(null);
-  };
-  const handleFilterChange = (filters) => {
-    setTypeFilters(filters);
-  };
-
   const debounceSearch = useCallback(
     debounce((value) => {
       setSearchTerm(value);
@@ -190,7 +187,7 @@ const Homepage: React.FC<any> = () => {
         return (
           <div className="collection-name">
             <h6>{row?.collectionName || ''}</h6>
-            <p>{row?.artistName || ''}</p>
+            <p className="mb-0">{row?.artistName || ''}</p>
           </div>
         );
       },
@@ -235,7 +232,7 @@ const Homepage: React.FC<any> = () => {
             }}
           >
             <img src={eyeIcon} alt="" />
-            <p>View Details</p>
+            <p className="mb-0 ms-1">View Details</p>
           </Link>
         );
       },
@@ -257,11 +254,13 @@ const Homepage: React.FC<any> = () => {
   }, []);
   return (
     <div className="main-wrapper">
-      <div className="header">
-        <h1 className="main-heading">Overview</h1>
+      <div className="header ">
+        <div className="container">
+          <h1 className="main-heading">Overview</h1>
+        </div>
       </div>
       <div className="page-wrapper">
-        <div className="content">
+        <div className="container">
           <div className="card">
             <div className="card-body">
               <div className="search-and-filter">
@@ -281,7 +280,14 @@ const Homepage: React.FC<any> = () => {
                   </button>
                 </div>
 
-                <TypeDropdown onFilterChange={handleFilterChange} />
+                <MultiSelect
+                  value={selectedTypes}
+                  options={typeOptions}
+                  onChange={(e) => setSelectedTypes(e.value)}
+                  placeholder="Type"
+                  className="p-multiselect-custom"
+                  panelClassName="custom-panel"
+                />
               </div>
               <PrimeDataTable
                 column={columns}

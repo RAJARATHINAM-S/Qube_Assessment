@@ -12,9 +12,7 @@ const App = () => {
   return (
     <>
       <Provider store={store}>
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
+        <AppRouter />
       </Provider>
     </>
   );
