@@ -19,11 +19,7 @@ const Homepage: React.FC<any> = () => {
   const [listData, setListData] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalRecords, setTotalRecords] = useState<any>(0);
-  const [typeFilters, setTypeFilters] = useState({
-    album: false,
-    ep: false,
-    single: false,
-  });
+
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const typeOptions = [
     { label: 'Album', value: 'album' },
@@ -116,13 +112,18 @@ const Homepage: React.FC<any> = () => {
     dispatch(setCollectionDetails(null));
   }, []);
   useEffect(() => {
-    const filteredMusic = albums.filter(
+    let filteredMusic = albums.filter(
       (item) =>
         item.collectionName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.artistName.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    filteredMusic = filteredMusic.filter(
+      (item) =>
+        selectedTypes.length === 0 ||
+        selectedTypes.includes(item.type.toLowerCase())
+    );
     setListData(filteredMusic);
-  }, [searchTerm]);
+  }, [searchTerm, selectedTypes]);
   return (
     <div className="main-wrapper">
       <div className="header ">
