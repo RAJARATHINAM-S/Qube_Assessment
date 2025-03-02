@@ -7,8 +7,8 @@ import { end_points } from '../services/endpoints';
 import { hideTableLoader, showTableLoader } from '../components/spinner';
 import { Link } from 'react-router-dom';
 import { routes } from '../utils/routes';
-import { useDispatch } from 'react-redux';
-import { setCollectionDetails } from '../redux/commonSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCollectionDetails, setFilterTypes } from '../redux/commonSlice';
 import { MultiSelect } from 'primereact/multiselect';
 import CustomMultiSelect from '../components/customMultiSelect';
 
@@ -19,7 +19,7 @@ const Homepage: React.FC<any> = () => {
   const [listData, setListData] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalRecords, setTotalRecords] = useState<any>(0);
-
+  const filterType = useSelector((state: any) => state.common.filterTypes);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const typeOptions = [
     { label: 'Album', value: 'album' },
@@ -118,9 +118,13 @@ const Homepage: React.FC<any> = () => {
   };
   useEffect(() => {
     dispatch(setCollectionDetails(null));
+    filterType?.length && setSelectedTypes(filterType);
   }, []);
   useEffect(() => {
     getPlayList();
+    if (selectedTypes?.length) {
+      dispatch(setFilterTypes(selectedTypes));
+    }
   }, [searchTerm, selectedTypes]);
 
   return (
