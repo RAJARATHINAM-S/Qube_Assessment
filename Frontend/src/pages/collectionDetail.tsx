@@ -8,14 +8,39 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { routes } from '../utils/routes';
 import { convertDuration_HMS, releasedDate } from '../utils/constant';
-const CollectionDetail: React.FC<any> = () => {
-  const details = useSelector((state: any) => state.common.collection);
-  console.log(details, 'details');
+
+interface CollectionData {
+  id: string;
+  collectionName: string;
+  artistName: string;
+  type: string;
+  songCount: number;
+  duration: string;
+  size: string;
+  releasedOn: string;
+  songs: Song[];
+}
+
+interface Song {
+  title: string;
+  performers: string;
+  duration: string;
+  size: string;
+}
+
+interface RootState {
+  common: {
+    collection: { id: string } | null;
+  };
+}
+
+const CollectionDetail: React.FC = () => {
+  const details = useSelector((state: RootState) => state.common.collection);
   const navigate = useNavigate();
   const [rows, setRows] = useState<number>(10);
-  const [listData, setListData] = useState<any>('');
+  const [listData, setListData] = useState<CollectionData | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalRecords, setTotalRecords] = useState<any>(0);
+  const [totalRecords, setTotalRecords] = useState<number>(0);
 
   const columns = [
     {
