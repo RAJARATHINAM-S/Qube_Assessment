@@ -131,7 +131,28 @@ const Homepage: React.FC<any> = () => {
     <div className="main-wrapper">
       <div className="header ">
         <div className="container">
-          <h1 className="main-heading">Overview</h1>
+          <div className="d-flex justify-content-between align-items-center">
+            <h1 className="main-heading">Overview</h1>
+            <div>
+              <Link 
+                to="/agora-med-care/dashboard" 
+                className="btn btn-primary me-2"
+                style={{ 
+                  backgroundColor: '#e74c3c', 
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  textDecoration: 'none',
+                  color: 'white',
+                  display: 'inline-flex',
+                  alignItems: 'center'
+                }}
+              >
+                <i className="pi pi-heart-fill me-1"></i>
+                Agora Med Care
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
       <div className="page-wrapper">
