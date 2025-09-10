@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import commonSlice from './commonSlice';
+import agoraMedCareSlice from './agoraMedCareSlice';
 import { getPreloadedState, saveToLocalStorage } from './localStorage';
 
 const combinedReducer = combineReducers({
   common: commonSlice,
+  agoraMedCare: agoraMedCareSlice,
 });
 const rootReducer = (state: any, action: any) => {
   if (action.type === 'login/logout') {
